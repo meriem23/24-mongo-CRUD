@@ -1,0 +1,31 @@
+// Create a database called 'contact'
+$ use contact
+
+// Create a collection called 'contactlist'
+$ db.createCollection('contactlist')
+
+//Insert 3 persons in contactlist
+$ db.contactlist.insertMany([{last name:'Ben Lahmer',first name:'Fares',email:'fares@gmail.com',age:26},
+{last name:'Kefi',first name:'Seif',email:'kefi@gmail.com',age:15},{last name:'Fatnassi',first name:'Sarra',email:'sarra.f@gmail.com',age:40},
+{last name:'Ben Yahia',first name:'Rym',age:4},{last name:'Cherif',first name:'Sami',age:3}])
+
+//Display all the contact list
+$ db.contactlist.find().pretty()
+
+//Display all the information about one person using his id
+$ db.contactlist.find(_id: ObjectId("5e4ae3230c2c2ce212bc8877"))
+
+//Display all the contact list having age > 18
+$ db.contactlist.find({age:{$gt:18}}).pretty()
+
+//Display all the contact list having age>18 and last name containing "ah"
+$ db.contactlist.find({age:{$gt:18}, last name: /ah/}).pretty()
+
+//Change the contact first name of "kefi Seif" by "Kefi Anis"
+$ db.contactlist.update({last name:'Kefi', first name:'Seif'},{$set:{first name : 'Anis}})
+
+//Delete the the contact list having age < 5
+$ db.contactlist.remove({age:{$lt:5}})
+
+//Display all the contact list
+$ db.contactlist.find().pretty()
