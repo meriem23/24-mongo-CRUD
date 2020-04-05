@@ -1,4 +1,4 @@
-// Create a database called 'contact'
+a// Create a database called 'contact'
 $ use contact
 
 // Create a collection called 'contactlist'
@@ -20,6 +20,10 @@ $ db.contactlist.find({age:{$gt:18}}).pretty()
 
 //Display all the contact list having age>18 and last name containing "ah"
 $ db.contactlist.find({age:{$gt:18}, last name: /ah/}).pretty()
+OR
+
+$ db.contactlist.find({$and:[{"last_name":/ah/},{"age":{ $gte: 18 }}]}).pretty()
+
 
 //Change the contact first name of "kefi Seif" by "Kefi Anis"
 $ db.contactlist.update({last name:'Kefi', first name:'Seif'},{$set:{first name : 'Anis}})
@@ -29,3 +33,4 @@ $ db.contactlist.remove({age:{$lt:5}})
 
 //Display all the contact list
 $ db.contactlist.find().pretty()
+
